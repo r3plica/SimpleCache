@@ -1,0 +1,27 @@
+{
+  "name": "simpleCache",
+  "homepage": "https://github.com/r3plica/SimpleCache",
+  "authors": [
+    "Jaymie Jeffrey <jaymie@r3plica.co.uk>"
+  ],
+  "description": "AngularJS simple caching service for use with API calls",
+  "main": "simpleCache.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "cache",
+    "angularjs",
+    "cache",
+    "simpleCache",
+    "ng-angular-cache"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
