@@ -5,7 +5,7 @@
   angular.module('ngSimpleCache', []).factory('SimpleCache', simpleCache);
 
   // Inject dependancies
-  cache.$inject = ['$cacheFactory', 'simpleCacheTimeout'];
+  simpleCache.$inject = ['$cacheFactory', 'simpleCacheTimeout'];
 
   // Create our function 
   function simpleCache($cacheFactory, timeout) {
