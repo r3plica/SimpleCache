@@ -123,6 +123,37 @@ You can set these as you would any other constant:
 .constant('simpleCacheDebugging', true)
 ```
 
+### Clearing other endpoints
+
+There could be a case when you perform an update and you wish to clear a different endpoint. To do this is simple using the wrapper above:
+
+```
+.controller('TestController', ['SimpleCache', 'ApiHander', 'apiUrl', function (cache, api, baseUrl) {
+    var self = this;
+
+    // Get our list of products
+    api.get('products').then(function (response) {
+        self.products = response;
+    });
+
+    // Update a category
+    self.updateCategory = function (model) {
+
+        // Try to update the product
+        api.put('categories', model).then(function (response) {
+
+            // Remove the products from the cache because their categories are now invalid
+            cache.remove(baseUrl + 'products');
+
+            // Update our list of products
+            api.get('products').then(function (response) {
+                self.products = response;
+            });
+        });
+    };
+}])
+```
+
 ## License
 
 Mit License: [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
