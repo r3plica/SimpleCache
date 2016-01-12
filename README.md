@@ -139,7 +139,7 @@ There could be a case when you perform an update and you wish to clear a differe
     // Update a category
     self.updateCategory = function (model) {
 
-        // Try to update the product
+        // Try to update the category
         api.put('categories', model).then(function (response) {
 
             // Remove the products from the cache because their categories are now invalid
