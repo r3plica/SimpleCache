@@ -5,10 +5,14 @@
   angular.module('ngSimpleCache', []).factory('SimpleCache', simpleCache);
 
   // Inject dependancies
-  simpleCache.$inject = ['$cacheFactory', 'simpleCacheTimeout'];
+  simpleCache.$inject = ['$cacheFactory', 'simpleCacheTimeout', 'simpleCacheDebugging'];
 
   // Create our function 
-  function simpleCache($cacheFactory, timeout) {
+  function simpleCache($cacheFactory, timeout, debugging) {
+
+    // Create a variable for our timers
+    var timers = [],
+        cache = $cacheFactory('Cache');
 
   	// Create our object
   	var simpleCache = {
@@ -20,15 +24,13 @@
   	// Return our service
   	return simpleCache;
 
-    // Create a variable for our timers
-    var timers = [],
-        cache = $cacheFactory('Cache');
-
     // Used to get the cache for a particular url
-    var get = function (key) {
+    function get(key) {
 
         // If we have not timed out
         if (!_hasTimedOut(key)) {
+
+            _debugMessage('Retrieving from cache ' + key);
 
             // Return our cache
             return cache.get(key);
@@ -36,13 +38,15 @@
     };
 
     // Used to set the cache for a url
-    var put = function (key, value) {
+    function put(key, value) {
 
         // Get our timer index
         var index = _hasKey(key);
 
         // If this is the first time we are setting the cache
         if (index === -1) {
+
+            _debugMessage('getting fomr cache: ' + key);
 
             // Create a new time
             var time = new Date().getTime();
@@ -56,13 +60,15 @@
             // Add our timer to our array
             timers.push(timer);
 
+            _debugMessage('Adding to cache: ' + key);
+
             // Cache our response
             cache.put(key, value);
         }
     };
 
     // Removes all asociated items from the array
-    var remove = function (key) {
+    function remove(key) {
 
         // Get our pairs
         var pairs = key.indexOf('/') > -1 ? key.split('/') : [key],
@@ -82,12 +88,14 @@
 
                 // Remove the timer
                 timers.splice(i, 1);
+
+            	_debugMessage('Removing from cache: ' + key);
             }
         }
     };
 
     // Finds the url matching the key supplied
-    var _hasKey = function (key) {
+    function _hasKey(key) {
 
         // If we have any timers currently active
         if (timers.length) {
@@ -112,7 +120,7 @@
     };
 
     // Checks to see if the cache has timed out, if it has it removes the timer from the array
-    var _hasTimedOut = function (key) {
+    function _hasTimedOut(key) {
 
         // Get our timer index
         var index = _hasKey(key);
@@ -143,6 +151,21 @@
         // Return false
         return false;
     };
+
+    // Writes a message to the console
+    function _debugMessage(message) {
+
+    	// If the console is not available, exit the function
+		if (!window.console)
+			return;
+
+		// If we are debugging
+		if (debugging) {
+
+			// Write our message to the console
+			console.log(message);
+		}
+    };
   };
 }());
 
@@ -150,5 +173,6 @@
   'use strict';
 
   angular.module('ngSimpleCache')
-    .constant('simpleCacheTimeout', 3600);
+    .constant('simpleCacheTimeout', 3600)
+    .constant('simpleCacheDebugging', false);
 }());
