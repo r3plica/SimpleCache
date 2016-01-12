@@ -30,6 +30,7 @@
         // If we have not timed out
         if (!_hasTimedOut(key)) {
 
+    		// Log the event
             _debugMessage('Retrieving from cache ' + key);
 
             // Return our cache
@@ -46,8 +47,6 @@
         // If this is the first time we are setting the cache
         if (index === -1) {
 
-            _debugMessage('getting fomr cache: ' + key);
-
             // Create a new time
             var time = new Date().getTime();
 
@@ -60,6 +59,7 @@
             // Add our timer to our array
             timers.push(timer);
 
+    		// Log the event
             _debugMessage('Adding to cache: ' + key);
 
             // Cache our response
@@ -89,6 +89,7 @@
                 // Remove the timer
                 timers.splice(i, 1);
 
+    			// Log the event
             	_debugMessage('Removing from cache: ' + key);
             }
         }
