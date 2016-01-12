@@ -3,7 +3,7 @@ AngularJS simple cache factory for caching API calls.
 
 ## Introduction
 First, let me explain what this module is for, just in case you are unclear :)
-Many sites today use API calls to gather their data, when using AngularJS there is a caching property on the $http call which allows you to specify a cache factory. For some reason the default one just doesn't do anything but cache your results and this is why I created this module.
+Many sites today use API calls to gather their data, when using AngularJS there is a caching property on the *$http* call which allows you to specify a cache factory. For some reason the default one just doesn't do anything but cache your results and this is why I created this module.
 
 Not only does it cache any api calls, when a put / post or delete is called on the same endpoint, it removes any related cached results so that the next call is fresh (which is then cached).
 
