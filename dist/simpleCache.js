@@ -5,10 +5,10 @@
   angular.module('ngSimpleCache', []).factory('SimpleCache', simpleCache);
 
   // Inject dependancies
-  cache.$inject = ['$cacheFactory', 'simpleCacheTimeout', 'baseApiUrl'];
+  cache.$inject = ['$cacheFactory', 'simpleCacheTimeout'];
 
   // Create our function 
-  function simpleCache($cacheFactory, timeout, baseApiUrl) {
+  function simpleCache($cacheFactory, timeout) {
 
   	// Create our object
   	var simpleCache = {
@@ -75,7 +75,7 @@
             var timer = timers[i];
 
             // Get the index
-            var index = timer.url.indexOf(baseApiUrl + key);
+            var index = timer.url.indexOf(key);
 
             // if we find the partial match
             if (index > -1) {
@@ -150,6 +150,5 @@
   'use strict';
 
   angular.module('ngSimpleCache')
-    .constant('simpleCacheTimeout', 3600)
-    .constant('baseApiUrl', '');
+    .constant('simpleCacheTimeout', 3600);
 }());
