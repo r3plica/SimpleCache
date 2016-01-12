@@ -1,6 +1,6 @@
 {
-  "name": "simpleCache",
-  "homepage": "https://github.com/r3plica/SimpleCache",
+  "name": "angular-simple-cache",
+  "homepage": "https://github.com/r3plica/angular-simple-cache",
   "authors": [
     "Jaymie Jeffrey <jaymie@r3plica.co.uk>"
   ],
@@ -11,10 +11,11 @@
   ],
   "keywords": [
     "cache",
-    "angularjs",
+    "angular-cache",
     "cache",
     "simpleCache",
-    "ng-angular-cache"
+    "ng-angular-cache",
+    "angular-simple-cache"
   ],
   "license": "MIT",
   "ignore": [
@@ -23,5 +24,7 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies" : {
+  }
 }
