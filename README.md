@@ -5,9 +5,9 @@ AngularJS simple cache factory for caching API calls.
 First, let me explain what this module is for, just in case you are unclear :)
 Many sites today use API calls to gather their data, when using AngularJS there is a caching property on the **$http** call which allows you to specify a cache factory. For some reason the default one just doesn't do anything but cache your results and this is why I created this module.
 
-Not only does it cache any api calls, when a put / post or delete is called on the same endpoint, it removes any related cached results so that the next call is fresh (which is then cached).
+Not only does it cache any api calls, when a **POST** / **PUT** or **DELETE** is called on the same endpoint, it removes any related cached results so that the next call is fresh (which is then cached).
 
-This means that if you are using an API that has the same endpoint for all CRUD actions, then it is handled easily without any interaction from you.
+This means that if you are using an API that has the same endpoint for all **CRUD** actions, then it is handled easily without any interaction from you.
 
 For example, if you were to try to get all products from an API, you might do something like this:
 
@@ -22,7 +22,7 @@ GET /products/123
 ```
 
 So, both these results would be cached for future use.
-If you were to create a new product, update or delete an existing product the module simple removes anything that uses the same url in this case that would mean that both products and products/123 would be removed from the cache and the next call would make an actual call to the API and cache the results again.
+If you were to create a new product, update or delete an existing product the module simple removes anything that uses the same url in this case that would mean that both *products* and *products/123* would be removed from the cache and the next call would make an actual call to the API and cache the results again.
 
 ## Installation
 
@@ -35,8 +35,8 @@ $ bower install angular-simple-cache
 ## Usage
 
 The module itself is really easy to use and can be used with no configuration.
-All you have to do is add the service to the cache property of all the $http requests that you wish to cache.
-For illustation purposes, here is a wrapper for the $http method:
+All you have to do is add the service to the cache property of all the **$http** requests that you wish to cache.
+For illustation purposes, here is a wrapper for the **$http** method:
 
 ```
 .service('ApiHandler', ['$q', '$http', 'SimpleCache', 'apiUrl', function ($q, $http, simpleCache, apiUrl) {
