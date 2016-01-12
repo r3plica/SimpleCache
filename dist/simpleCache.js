@@ -2,7 +2,7 @@
   'use strict';
 
   // Create our module
-  angular.module('simpleCache', []).factory('SimpleCache', simpleCache);
+  angular.module('ngSimpleCache', []).factory('SimpleCache', simpleCache);
 
   // Inject dependancies
   cache.$inject = ['$cacheFactory', 'simpleCacheTimeout', 'baseApiUrl'];
@@ -149,7 +149,7 @@
 (function() {
   'use strict';
 
-  angular.module('cache')
+  angular.module('ngSimpleCache')
     .constant('simpleCacheTimeout', 3600)
     .constant('baseApiUrl', '');
 }());

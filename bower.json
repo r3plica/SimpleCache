@@ -5,7 +5,7 @@
     "Jaymie Jeffrey <jaymie@r3plica.co.uk>"
   ],
   "description": "AngularJS simple caching service for use with API calls",
-  "main": "simpleCache.js",
+  "main": "dist/simpleCache.js",
   "moduleType": [
     "globals"
   ],
