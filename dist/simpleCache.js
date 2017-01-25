@@ -70,9 +70,14 @@
     // Removes all asociated items from the array
     function remove(key) {
 
-        // Get our pairs
-        var pairs = key.indexOf('/') > -1 ? key.split('/') : [key],
-            base = pairs[0];
+        // Remove our scheme from our url
+        if (key.indexOf('http') === 0)
+            key = key.split('://').pop();
+
+        // Now work out our base URL
+        var pairs = key.split('/'),
+            base = pairs.length > 1 ? pairs[0] + '/' + pairs[1] : pairs[0],
+            baseUrl = base.split('?')[0];
 
         // Loop through our timers
         for (var i = timers.length - 1; i >= 0; i--) {
@@ -81,7 +86,7 @@
             var timer = timers[i];
 
             // Get the index
-            var index = timer.url.indexOf(key);
+            var index = timer.url.indexOf(baseUrl);
 
             // if we find the partial match
             if (index > -1) {
@@ -90,7 +95,7 @@
                 timers.splice(i, 1);
 
     			// Log the event
-            	_debugMessage('Removing from cache: ' + key);
+                _debugMessage('Removing from cache: ' + baseUrl);
             }
         }
     };
