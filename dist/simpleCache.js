@@ -18,7 +18,8 @@
   	var simpleCache = {
   		get: get,
   		put: put,
-  		remove: remove
+  		remove: remove,
+  		removeAll: removeAll
   	}
 
   	// Return our service
@@ -98,6 +99,16 @@
                 _debugMessage('Removing from cache: ' + baseUrl);
             }
         }
+    };
+
+    // Resets all the timers to invalidate the cache
+    function removeAll() {
+
+        // Log the event
+        _debugMessage('Removing all cache');
+
+        // Reset our timers
+        timers = [];
     };
 
     // Finds the url matching the key supplied
